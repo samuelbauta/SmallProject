@@ -52,18 +52,6 @@ definitions
       password
         type string
         example secret
-  AddContact
-    type object
-    required
-    - firstName
-    - lastName
-    properties
-      login
-        type string
-        example fred
-      password
-        type string
-        example secret
         
 
 host cop4331.site
