@@ -12,6 +12,29 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 
 paths:
+  /CreateAccount.php:
+    post:
+      tags:
+      - Users
+      summary: Creates account
+      operationId: dCreate
+      description: Creates Acount
+      consumes:
+      - application/json
+      parameters: 
+      - in: body
+        name: createItem
+        description: Create
+        schema: 
+          $ref: '#/definitions/Create'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
+        500:
+          description: Server Error
+          
   /Login.php:
     post:
         tags:
@@ -28,7 +51,7 @@ paths:
           name: loginItem
           description: Login
           schema:
-            $ref '#/definitions/Login'
+            $ref: '#/definitions/Login'
         responses:
           200:
             description: OK
@@ -40,6 +63,27 @@ paths:
             
 
 definitions:
+  Create:
+    type: object
+    required:
+    - firstName
+    - lastName
+    - login
+    - password
+    properties:
+      firstName:
+        type: string
+        example: "first"
+      lastName:
+        type: string
+        example: "last"
+      login:
+        type: string
+        example: "user"
+      password:
+        type: string
+        example: "pass"
+
   Login:
     type: object
     required:
@@ -53,7 +97,6 @@ definitions:
         type: string
         example: "secret"
         
-
 host: cop4331.site
 basePath: /LAMPAPI
 schemes:
