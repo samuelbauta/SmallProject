@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   description: This is the API documentation for COP 4331 
   version: 1.0.0
-  title: Login teasto
+  title: Contact manager
   # put the contact info for your development or API team
   contact:
     email: ha@ha.com
@@ -12,7 +12,7 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 
 paths:
-  /Login.php
+  /Login.php:
     post:
         tags:
         - Users
@@ -31,11 +31,11 @@ paths:
             $ref '#/definitions/Login'
         responses:
           200:
-            description OK
+            description: OK
           404:
-            description URL Not Found
+            description: URL Not Found
           500:
-            description Server Error
+            description: Server Error
             
             
 
