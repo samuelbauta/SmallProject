@@ -1,0 +1,72 @@
+swagger '2.0'
+info
+  description This is the API documentation for COP 4331 
+  version 1.0.0
+  title Login teasto
+  # put the contact info for your development or API team
+  contact
+    email ha@ha.com
+
+  license
+    name Apache 2.0
+    url httpwww.apache.orglicensesLICENSE-2.0.html
+
+paths
+  Login.php
+    post
+        tags
+        - Users
+        summary Logs in to the login app
+        operationId dlLogin
+        description Logs in to login app
+        consumes
+        - applicationjson
+        produces
+        - applicationjson
+        parameters
+        - in body
+          name loginItem
+          description Login
+          schema
+            $ref '#definitionsLogin'
+        responses
+          200
+            description OK
+          404
+            description URL Not Found
+          500
+            description Server Error
+            
+            
+
+definitions
+  Login
+    type object
+    required
+    - login
+    - password
+    properties
+      login
+        type string
+        example fred
+      password
+        type string
+        example secret
+  AddContact
+    type object
+    required
+    - firstName
+    - lastName
+    properties
+      login
+        type string
+        example fred
+      password
+        type string
+        example secret
+        
+
+host cop4331.site
+basePath LAMPAPI
+schemes
+- http
