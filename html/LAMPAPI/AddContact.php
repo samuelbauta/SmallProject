@@ -1,11 +1,11 @@
 <?php
 	$inData = getRequestInfo();
 	
-	$firstName = $inData["FirstName"];
-    $lastName = $inData["LastName"];
-    $email = $inData["Email"];
-    $phone = $inData["Phone"];
-    $userID = $inData["UserID"];
+	$firstName = $inData["firstName"];
+    $lastName = $inData["lastName"];
+    $email = $inData["email"];
+    $phone = $inData["phone"];
+    $userID = $inData["userID"];
 
     $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); 	
 	if( $conn->connect_error )
