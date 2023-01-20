@@ -1,60 +1,60 @@
-swagger '2.0'
-info
-  description This is the API documentation for COP 4331 
-  version 1.0.0
-  title Login teasto
+swagger: '2.0'
+info:
+  description: This is the API documentation for COP 4331 
+  version: 1.0.0
+  title: Login teasto
   # put the contact info for your development or API team
-  contact
-    email ha@ha.com
+  contact:
+    email: ha@ha.com
 
-  license
-    name Apache 2.0
-    url httpwww.apache.orglicensesLICENSE-2.0.html
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
 
-paths
-  Login.php
-    post
-        tags
+paths:
+  /Login.php
+    post:
+        tags:
         - Users
-        summary Logs in to the login app
-        operationId dlLogin
-        description Logs in to login app
-        consumes
-        - applicationjson
-        produces
-        - applicationjson
-        parameters
-        - in body
-          name loginItem
-          description Login
-          schema
-            $ref '#definitionsLogin'
-        responses
-          200
+        summary: Logs in to the login app
+        operationId: dlLogin
+        description: Logs in to login app
+        consumes:
+        - application/json
+        produces:
+        - application/json
+        parameters:
+        - in: body
+          name: loginItem
+          description: Login
+          schema:
+            $ref '#/definitions/Login'
+        responses:
+          200:
             description OK
-          404
+          404:
             description URL Not Found
-          500
+          500:
             description Server Error
             
             
 
-definitions
-  Login
-    type object
-    required
+definitions:
+  Login:
+    type: object
+    required:
     - login
     - password
-    properties
-      login
-        type string
-        example fred
-      password
-        type string
-        example secret
+    properties:
+      login:
+        type: string
+        example: "fred"
+      password:
+        type: string
+        example: "secret"
         
 
-host cop4331.site
-basePath LAMPAPI
-schemes
+host: cop4331.site
+basePath: /LAMPAPI
+schemes:
 - http
