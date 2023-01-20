@@ -34,7 +34,7 @@ paths:
           description: URL Not Found
         500:
           description: Server Error
-          
+    
   /Login.php:
     post:
         tags:
@@ -59,8 +59,31 @@ paths:
             description: URL Not Found
           500:
             description: Server Error
-            
-            
+    
+  /AddContact.php:
+    post:
+        tags:
+        - Contacts
+        summary: Adds contact assigned to user
+        operationId: dlAddContact
+        description: Adds contact
+        consumes:
+        - application/json
+        parameters:
+        - in: body
+          name: addContactItem
+          description: AddContact
+          schema:
+            $ref: '#/definitions/AddContact'
+        responses:
+          200:
+            description: OK
+          404:
+            description: URL Not Found
+          500:
+            description: Server Error
+
+
 
 definitions:
   Create:
@@ -83,7 +106,7 @@ definitions:
       password:
         type: string
         example: "pass"
-
+    
   Login:
     type: object
     required:
@@ -96,7 +119,34 @@ definitions:
       password:
         type: string
         example: "secret"
-        
+    
+  AddContact:
+    type: object
+    required:
+    - firstName
+    - lastName
+    - email
+    - phone
+    - userID
+    properties:
+      firstName:
+        type: string
+        example: "fred"
+      lastName:
+        type: string
+        example: "secret"
+      email:
+        type: string
+        example: "name@domain.net"
+      phone:
+        type: string
+        example: "800-000-0012"
+      userID:
+        type: integer
+        example: -1
+
+
+
 host: cop4331.site
 basePath: /LAMPAPI
 schemes:
