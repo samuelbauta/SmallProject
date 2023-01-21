@@ -173,26 +173,14 @@ definitions:
   SearchContact:
     type: object
     required:
-    - firstName
-    - lastName
-    - email
-    - phone
+    - search
     - userID
     - offest
     - count
     properties:
-      firstName:
+      search:
         type: string
-        example: "fred"
-      lastName:
-        type: string
-        example: "secret"
-      email:
-        type: string
-        example: "name@domain.net"
-      phone:
-        type: string
-        example: "800-000-0012"
+        example: "s"
       userID:
         type: integer
         example: -1
