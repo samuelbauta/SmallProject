@@ -6,8 +6,8 @@
     $email = $inData["email"];
     $phone = $inData["phone"];
 	$userId = $inData["userID"];
-    $lowerLim = $inData["lowerLim"];
-    $upperLim = $inData["upperLim"];
+    $offset = $inData["offset"];
+    $count = $inData["count"];
 
     $fNameArr = "";
     $lNameArr = "";
@@ -24,8 +24,8 @@
 	}
 	else
 	{
-        $stmt = $conn->prepare("SELECT FirstName, LastName, Email, Phone, ID FROM Contacts WHERE FirstName LIKE ? AND LastName LIKE ? AND Email LIKE ? AND Phone LIKE ? AND UserID=? LIMIT ?,?");
-        $stmt->bind_param("ssssiii", $firstName, $lastName, $email, $phone, $userId, $lowerLim, $upperLim);
+        $stmt = $conn->prepare("SELECT FirstName, LastName, Email, Phone, ID FROM Contacts WHERE (FirstName LIKE ? OR ? is null) AND (LastName LIKE ? OR ? is null) AND (Email LIKE ? OR ? is null) AND (Phone LIKE ? OR ? is null) AND UserID=? LIMIT ?,?");
+        $stmt->bind_param("ssssssssiii", $firstName, $firstName, $lastName, $lastName, $email, $email, $phone, $phone, $userId, $offset, $count);
         $stmt->execute();
         $result = $stmt->get_result();
 

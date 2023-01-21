@@ -178,8 +178,8 @@ definitions:
     - email
     - phone
     - userID
-    - lowerLim
-    - upperLim
+    - offest
+    - count
     properties:
       firstName:
         type: string
@@ -196,12 +196,12 @@ definitions:
       userID:
         type: integer
         example: -1
-      lowerLim:
+      offset:
         type: integer
         example: 0
-      upperLim:
+      count:
         type: integer
-        example: 0
+        example: 1
 
 
 

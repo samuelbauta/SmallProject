@@ -28,7 +28,6 @@ INSERT INTO Users (FirstName, LastName, Login, Password)
 insert into Users (FirstName,LastName,Login,Password) VALUES ('Rick','Leinecker','RickL','COP4331');
 insert into Users (FirstName,LastName,Login,Password) VALUES ('Sam','Hill','SamH','Test');
 insert into Users (FirstName,LastName,Login,Password) VALUES ('Rick','Leinecker','RickL','5832a71366768098cceb7095efb774f2');
-insert into Users (FirstName,LastName,Login,Password) VALUES ('Sam','Hill','SamH','0cbc6611f5540bd0809a388dc95a615b');
 
 
 INSERT INTO Contacts (FirstName, LastName, Email, Phone, UserID)
