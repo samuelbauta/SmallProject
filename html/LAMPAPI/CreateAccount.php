@@ -1,5 +1,4 @@
 <?php
-
 	$inData = getRequestInfo();
 	$firstName = $inData["firstName"];
 	$lastName = $inData["lastName"];
@@ -12,12 +11,19 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("INSERT INTO Users (FirstName, LastName, Login, Password) VALUES (?, ?, ?, ?)");
-		$stmt->bind_param("ssss", $firstName,  $lastName,  $login, $password);
-		$stmt->execute();
-		$stmt->close();
-		$conn->close();
-		returnWithError("");
+		try {
+			$stmt = $conn->prepare("INSERT INTO Users (FirstName, LastName, Login, Password) VALUES (?, ?, ?, ?)");
+			$stmt->bind_param("ssss", $firstName,  $lastName,  $login, $password);
+			if(!$stmt->execute()){
+				throw new Exception($stmt->error);
+			} else {
+				$stmt->close();
+				$conn->close();
+				returnWithError("");
+			}
+		} catch (Exception $e) {
+			returnWithError($e->getMessage());
+		}
 	}
 	
 	function getRequestInfo()
