@@ -18,7 +18,7 @@ paths:
       - Users
       summary: Creates account
       operationId: dCreate
-      description: Creates Acount
+      description: Creates Account
       consumes:
       - application/json
       parameters: 
@@ -75,6 +75,31 @@ paths:
           description: AddContact
           schema:
             $ref: '#/definitions/AddContact'
+        responses:
+          200:
+            description: OK
+          404:
+            description: URL Not Found
+          500:
+            description: Server Error
+    
+  /SearchContact.php:
+    post:
+        tags:
+        - Contacts
+        summary: Searchs contact based on fields assigned to user
+        operationId: dlSearchContact
+        description: Searchs contact based on fields assigned to user
+        consumes:
+        - application/json
+        produces:
+        - application/json
+        parameters:
+        - in: body
+          name: searchContactItem
+          description: SearchContact
+          schema:
+            $ref: '#/definitions/SearchContact'
         responses:
           200:
             description: OK
@@ -144,6 +169,39 @@ definitions:
       userID:
         type: integer
         example: -1
+    
+  SearchContact:
+    type: object
+    required:
+    - firstName
+    - lastName
+    - email
+    - phone
+    - userID
+    - lowerLim
+    - upperLim
+    properties:
+      firstName:
+        type: string
+        example: "fred"
+      lastName:
+        type: string
+        example: "secret"
+      email:
+        type: string
+        example: "name@domain.net"
+      phone:
+        type: string
+        example: "800-000-0012"
+      userID:
+        type: integer
+        example: -1
+      lowerLim:
+        type: integer
+        example: 0
+      upperLim:
+        type: integer
+        example: 0
 
 
 
