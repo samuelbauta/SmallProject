@@ -107,6 +107,29 @@ paths:
             description: URL Not Found
           500:
             description: Server Error
+            
+  /DeleteContact.php:
+    post:
+        tags:
+        - Contacts
+        summary: Deletes contact via given ID
+        operationId: dlDeleteContact
+        description: Deletes contact
+        consumes:
+        - application/json
+        parameters:
+        - in: body
+          name: DeleteContactItem
+          description: DeleteContact
+          schema:
+            $ref: '#/definitions/DeleteContact'
+        responses:
+          200:
+            description: OK
+          404:
+            description: URL Not Found
+          500:
+            description: Server Error
 
 
 
@@ -169,7 +192,16 @@ definitions:
       userID:
         type: integer
         example: -1
-    
+  
+  DeleteContact:
+    type: object
+    required:
+    - ID
+    properties:
+      ID:
+        type: integer
+        example: -1
+        
   SearchContact:
     type: object
     required:
