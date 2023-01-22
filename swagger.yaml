@@ -82,6 +82,28 @@ paths:
             description: URL Not Found
           500:
             description: Server Error
+  /UpdateContact.php:
+    post:
+        tags:
+        - Contacts
+        summary: Updates contact given ID and UserID
+        operationId: dlUpdateContact
+        description: Updates contact
+        consumes:
+        - application/json
+        parameters:
+        - in: body
+          name: updateContactItem
+          description: UpdateContact
+          schema:
+            $ref: '#/definitions/UpdateContact'
+        responses:
+          200:
+            description: OK
+          404:
+            description: URL Not Found
+          500:
+            description: Server Error
     
   /SearchContact.php:
     post:
@@ -190,6 +212,32 @@ definitions:
         type: string
         example: "800-000-0012"
       userID:
+        type: integer
+        example: -1
+        
+  UpdateContact:
+    type: object
+    required:
+    - firstName
+    - lastName
+    - email
+    - phone
+    - userID
+    - id
+    properties:
+      firstName:
+        type: string
+        example: "fred"
+      lastName:
+        type: string
+        example: "secret"
+      email:
+        type: string
+        example: "name@domain.net"
+      phone:
+        type: string
+        example: "800-000-0012"
+      id:
         type: integer
         example: -1
   
