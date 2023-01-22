@@ -11,34 +11,34 @@
 	$searchCount = 0;
 
     $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); 	
-	if( $conn->connect_error )
-	{
+	if( $conn->connect_error ) {
 		returnWithError( $conn->connect_error );
-	}
-	else
-	{
-        $stmt = $conn->prepare("SELECT FirstName, LastName, Email, Phone, ID FROM Contacts WHERE FirstName LIKE ? OR LastName LIKE ? OR Email LIKE ? OR Phone LIKE ? AND UserID=? LIMIT ?,?");
-        $stmt->bind_param("ssssiii", $search, $search, $search, $search, $userId, $offset, $count);
-        $stmt->execute();
-        $result = $stmt->get_result();
+	} else {
+		try {
+        	$stmt = $conn->prepare("SELECT FirstName, LastName, Email, Phone, ID FROM Contacts WHERE FirstName LIKE ? OR LastName LIKE ? OR Email LIKE ? OR Phone LIKE ? AND UserID=? LIMIT ?,?");
+        	$stmt->bind_param("ssssiii", $search, $search, $search, $search, $userId, $offset, $count);
+        	if(!$stmt->execute()) {
+				throw new Exception($stmt->error);
+			} else {
+        		$result = $stmt->get_result();
 
-        while($row = $result->fetch_assoc())
-		{
-			$searchCount++;
-			$results[] = array("firstName" => $row["FirstName"], "lastName" => $row["LastName"], "email" => $row["Email"], "phone" => $row["Phone"], "ID" => $row["ID"]);
-		}
+        		while($row = $result->fetch_assoc()) {
+					$searchCount++;
+					$results[] = array("firstName" => $row["FirstName"], "lastName" => $row["LastName"], "email" => $row["Email"], "phone" => $row["Phone"], "ID" => $row["ID"]);
+				}
 
-        if( $searchCount == 0 )
-		{
-			returnWithError( "No Records Found" );
+        		if ( $searchCount == 0 ) {
+					returnWithError( "No Records Found" );
+				} else {
+					returnWithInfo( $results );
+				}
+			
+        		$stmt->close();
+				$conn->close();
+			}
+		} catch (Exception $e) {
+			returnWithError($e->getMessaage());
 		}
-		else
-		{
-			returnWithInfo( $results );
-		}
-        
-        $stmt->close();
-		$conn->close();
     }
 
 	function getRequestInfo()

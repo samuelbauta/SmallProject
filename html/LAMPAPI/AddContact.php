@@ -14,12 +14,19 @@
 	}
 	else
 	{
-        $stmt = $conn->prepare("INSERT INTO Contacts (FirstName, LastName, Email, Phone, UserID) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssi", $firstName, $lastName, $email, $phone, $userID);
-        $stmt->execute();
-        $stmt->close();
-		$conn->close();
+		try {
+        	$stmt = $conn->prepare("INSERT INTO Contacts (FirstName, LastName, Email, Phone, UserID) VALUES (?, ?, ?, ?, ?)");
+        	$stmt->bind_param("ssssi", $firstName, $lastName, $email, $phone, $userID);
+        	if (!$stmt->execute()) {
+				throw new Exception($stmt->error);
+			} else {
+        		$stmt->close();
+				$conn->close();
+			}
 		returnWithError("");
+		} catch (Exception $e) {
+			returnWithError($e->getMessages());
+		}
 
     }
 

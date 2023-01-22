@@ -17,7 +17,7 @@ CREATE TABLE `COP4331`.`Contacts` (
        `FirstName` VARCHAR(50) NOT NULL DEFAULT '' ,
        `LastName` VARCHAR(50) NOT NULL DEFAULT '',
        `Email` VARCHAR(50)  DEFAULT '' ,
-       `Phone` VARCHAR(20) DEFAULT '' ,
+       `Phone` VARCHAR(50) DEFAULT '' ,
        `DateCreated` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,
        `UserID` INT NOT NULL,
        FOREIGN KEY (UserID) REFERENCES Users (ID));
