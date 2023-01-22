@@ -25,7 +25,7 @@
         while($row = $result->fetch_assoc())
 		{
 			$searchCount++;
-			$results[] = array("FirstName" => $row["FirstName"], "LastName" => $row["LastName"], "Email" => $row["Email"], "Phone" => $row["Phone"], "ID" => $row["ID"]);
+			$results[] = array("firstName" => $row["FirstName"], "lastName" => $row["LastName"], "email" => $row["Email"], "phone" => $row["Phone"], "ID" => $row["ID"]);
 		}
 
         if( $searchCount == 0 )
