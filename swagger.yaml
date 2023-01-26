@@ -223,7 +223,7 @@ definitions:
     - email
     - phone
     - userID
-    - id
+    - ID
     properties:
       firstName:
         type: string
@@ -237,7 +237,7 @@ definitions:
       phone:
         type: string
         example: "800-000-0012"
-      id:
+      ID:
         type: integer
         example: -1
   
