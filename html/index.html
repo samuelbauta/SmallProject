@@ -1,58 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Login Screen</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
-        rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
-        crossorigin="anonymous">
-    </head>
-    <body>
-        <div class="container-fluid my-5 bg-dark text-white">
-            <h1 class="text-center">Contact Manager</h1>
-        </div>
-        <div class="text-center">
-            <button type="button" id="login" class="btn btn-primary btn-lg" data-bs-toggle="modal"
-            data-bs-target="#logScreen">Login</button>
-            <a href="createAccount.html">
-            <button type="button" id="createAccount"class="btn btn-primary btn-lg">Create Account</button>
-            </a>
 
-        </div>
-        <div class="modal" id="logScreen">
-            <div class="modal-dialog modal-xl">
-              <div class="modal-content">
-          
+<head>
+    <title>Login Screen</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-fluid my-5 bg-dark text-white">
+        <h1 class="text-center">Contact Manager</h1>
+    </div>
+    <div class="text-center">
+        <button type="button" id="login" class="btn btn-primary btn-lg" data-bs-toggle="modal"
+            data-bs-target="#logScreen">Login</button>
+        <button type="button" id="createAccount" class="btn btn-primary btn-lg" data-bs-toggle="modal"
+            data-bs-target="#createAccountWindow">Create Account</button>
+
+    </div>
+    <div>
+    <h1 class="text-center" id="loginResult"></h1>
+    <a href="contacts.html">
+    <button>click here</button>
+    </a>
+    </div>
+    <div class="modal" id="logScreen">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
                 <div class="modal-header">
-                  <h4 class="modal-title">Please Login</h4>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <h4 class="modal-title">Please Login</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-          
+
                 <div class="modal-body">
-                 <div class="container-fluid">
-                    <form action=>
-                        <div class="mb-3 mt-3">
-                          <label for="email" class="form-label">User Name:</label>
-                          <input type="text" class="form-control" id="userName" placeholder="Enter User Name" name="email">
-                        </div>
-                        <div class="mb-3">
-                          <label for="pwd" class="form-label">Password:</label>
-                          <input type="password" class="form-control" id="loginPassword" placeholder="Enter password" name="pswd">
-                        </div>
-                        <div class="form-check mb-3">
-                          <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" name="remember"> Remember me
-                          </label>
-                        </div>
-                        <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
-                      </form>
-                 </div>
+                    <div class="container-fluid">
+                        <form onsubmit="return false">
+                            <div class="mb-3 mt-3">
+                                <label for="userName" class="form-label">User Name:</label>
+                                <input type="text" class="form-control" id="userName" placeholder="Enter User Name"
+                                    name="userName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="loginPassword" class="form-label">Password:</label>
+                                <input type="password" class="form-control" id="loginPassword"
+                                    placeholder="Enter password" name="password" required>
+                            </div>
+                            <div class="form-check mb-3">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" name="remember"> Remember me
+                                </label>
+                            </div>
+                            <button type="button" class="btn btn-primary" id="loginBtn">Submit</button>
+                        </form>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-        <script type="text/javascript" src="js/homePage.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
-        crossorigin="anonymous"></script>
-    </body>
+        </div>
+    </div>
+    <div class="modal" id="createAccountWindow">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Account Creation</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <form class="needs-validation" novalidate onsubmit="return false">
+                            <div class="mb-3 mt-3">
+                                <label for="userName" class="form-label">First Name:</label>
+                                <input type="text" class="form-control" id="firstName" placeholder="Enter First Name"
+                                    name="firstName" required>
+                                    <div class="invalid-feedback">First name is required</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="lastName" class="form-label">Last Name:</label>
+                                <input type="text" class="form-control" id="lastName" placeholder="Enter Last Name"
+                                    name="lastName" required>
+                                    <div class="invalid-feedback">Last name is required</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="userName" class="form-label">User Name:</label>
+                                <input type="text" class="form-control" id="newUserName" placeholder="Enter User Name"
+                                    name="userName" required>
+                                    <div class="invalid-feedback">User name is required</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="loginPassword" class="form-label">Password:</label>
+                                <input type="password" class="form-control" id="newPassword"
+                                    placeholder="Enter password" name="password" required>
+                                    <div class="invalid-feedback">Password must bt 5 Characters long</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="loginPassword" class="form-label">Re-Enter Password:</label>
+                                <input type="password" class="form-control" id="rePassword" placeholder="Enter password"
+                                    name="rePassword" required>
+                                    <div class="invalid-feedback">Passwords must match</div>
+                            </div>
+                            <div>
+                                <h5 id="errorMessge"></h5>
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="createAccountBtn">Submit</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <script src="js/homePage.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+                crossorigin="anonymous"></script>
+</body>
 </html>
