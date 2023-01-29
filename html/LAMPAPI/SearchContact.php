@@ -15,7 +15,7 @@
 		returnWithError( $conn->connect_error );
 	} else {
 		try {
-        	$stmt = $conn->prepare("SELECT FirstName, LastName, Email, Phone, ID FROM Contacts WHERE FirstName LIKE ? OR LastName LIKE ? OR Email LIKE ? OR Phone LIKE ? AND UserID=? LIMIT ?,?");
+        	$stmt = $conn->prepare("SELECT FirstName, LastName, Email, Phone, ID FROM Contacts WHERE (FirstName LIKE ? OR LastName LIKE ? OR Email LIKE ? OR Phone LIKE ?) AND UserID=? LIMIT ?,?");
         	$stmt->bind_param("ssssiii", $search, $search, $search, $search, $userId, $offset, $count);
         	if(!$stmt->execute()) {
 				throw new Exception($stmt->error);
