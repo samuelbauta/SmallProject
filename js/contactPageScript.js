@@ -7,6 +7,7 @@ let lastName = ""
 document.addEventListener('DOMContentLoaded', function () {
     readCookie()
 }, false)
+alert("Hello " + firstName)
 
 document.getElementById("addContact").addEventListener("click", addContact);
 
@@ -49,7 +50,7 @@ function addContact() {
                 let jsonObject = JSON.parse(xhr.responseText);
 
                 if (jsonObject.error == "") {
-                    document.getElementById("addContactResult").innerHTML = "Successfully added" + document.getElementById("firstName") + " " + document.getElementById("lastName") + " to contacts";
+                    document.getElementById("addContactResult").innerHTML = `Successfully added ${document.getElementById("firstName")} ${document.getElementById("lastName")} to contacts`;
                     $('#addContactWindow').modal('hide')
                 }
                 else {
@@ -115,8 +116,8 @@ function readCookie() {
 }
 
 function saveCookie(){
-	let minutes = 20;
-	let date = new Date();
-	date.setTime(date.getTime()+(minutes*60*1000));	
-	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
+        let minutes = 20;
+        let date = new Date();
+        date.setTime(date.getTime()+(minutes*60*1000));
+        document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
 }
