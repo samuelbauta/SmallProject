@@ -3,8 +3,6 @@
 	
 	$search = "%" . $inData["search"] . "%";
 	$userId = $inData["userID"];
-    $offset = $inData["offset"];
-    $count = $inData["count"];
 
     $results = array();
 
@@ -15,8 +13,8 @@
 		returnWithError( $conn->connect_error );
 	} else {
 		try {
-        	$stmt = $conn->prepare("SELECT FirstName, LastName, Email, Phone, ID FROM Contacts WHERE (FirstName LIKE ? OR LastName LIKE ? OR Email LIKE ? OR Phone LIKE ?) AND UserID=? LIMIT ?,?");
-        	$stmt->bind_param("ssssiii", $search, $search, $search, $search, $userId, $offset, $count);
+        	$stmt = $conn->prepare("SELECT FirstName, LastName, Email, Phone, ID FROM Contacts WHERE (FirstName LIKE ? OR LastName LIKE ? OR Email LIKE ? OR Phone LIKE ?) AND UserID=?");
+        	$stmt->bind_param("ssssi", $search, $search, $search, $search, $userId);
         	if(!$stmt->execute()) {
 				throw new Exception($stmt->error);
 			} else {

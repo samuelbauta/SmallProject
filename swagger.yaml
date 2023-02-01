@@ -255,8 +255,6 @@ definitions:
     required:
     - search
     - userID
-    - offest
-    - count
     properties:
       search:
         type: string
@@ -264,12 +262,6 @@ definitions:
       userID:
         type: integer
         example: -1
-      offset:
-        type: integer
-        example: 0
-      count:
-        type: integer
-        example: 1
 
 
 
