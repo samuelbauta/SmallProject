@@ -25,7 +25,7 @@ error_reporting(E_ALL);
 				$autonumber = $conn->insert_id;
 				$stmt->close();
 				$conn->close();
-				$retValue = '{"contactID":' . $autonumber . '}';
+				$retValue = '{"contactID":' . $autonumber . ', "error":""}';
 				sendResultInfoAsJson( $retValue );
 				return;
 			}
