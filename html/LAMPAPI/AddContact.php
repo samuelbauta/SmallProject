@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 	$inData = getRequestInfo();
 	
 	$firstName = $inData["firstName"];
@@ -15,18 +17,21 @@
 	else
 	{
 		try {
-        	$stmt = $conn->prepare("INSERT INTO Contacts (FirstName, LastName, Email, Phone, UserID) VALUES (?, ?, ?, ?, ?)");
-        	$stmt->bind_param("ssssi", $firstName, $lastName, $email, $phone, $userID);
-        	if (!$stmt->execute()) {
+			$stmt = $conn->prepare("INSERT INTO Contacts (FirstName, LastName, Email, Phone, UserID) VALUES (?, ?, ?, ?, ?)");
+			$stmt->bind_param("ssssi", $firstName, $lastName, $email, $phone, $userID);
+			if (!$stmt->execute()) {
 				throw new Exception($stmt->error);
 			} else {
-        		$stmt->close();
+				$autonumber = $conn->insert_id;
+				$stmt->close();
 				$conn->close();
+				$retValue = '{"contactID":' . $autonumber . '}';
+				sendResultInfoAsJson( $retValue );
+				return;
 			}
-		returnWithError("");
-		} catch (Exception $e) {
-			returnWithError($e->getMessages());
-		}
+			} catch (Exception $e) {
+				returnWithError($e->getMessage());
+			}
 
     }
 
