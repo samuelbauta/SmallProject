@@ -20,6 +20,10 @@
 
 		if( $row = $result->fetch_assoc()  )
 		{
+			$stmt = $conn->prepare("UPDATE Users SET DateLastLoggedIn = CURRENT_TIMESTAMP WHERE Login = ?");
+			$stmt->bind_param("s", $login);
+			$stmt->execute();
+			
 			returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
 		}
 		else
