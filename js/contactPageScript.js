@@ -7,6 +7,7 @@ const ids = [];
 
 document.addEventListener('DOMContentLoaded', function () {
     readCookie()
+    loadContact()
 }, false)
 
 document.getElementById("addNewContact").addEventListener("click", addContact);
@@ -46,19 +47,16 @@ function loadContact()
                     let last = jsonObject.results[i].lastName;
                     let email = jsonObject.results[i].email;
                     let phone = jsonObject.results[i].phone;
-                    console.log(phone);
-
                     ids[i] = jsonObject.results[i].ID;
+
                     text += "<tr id='row" + i + "'>"
                     text += "<td id='first_Name" + i + "'><span>" + first + "</span></td>";
                     text += "<td id='last_Name" + i + "'><span>" + last + "</span></td>";
                     text += "<td id='email" + i + "'><span>" + email + "</span></td>";
                     text += "<td id='phone" + i + "'><span>" + phone + "</span></td>";
-                    text += "<td id='updateBtn" + i + " '<button type='button' class='btn-primary'>Update</button> </span></td>";
-                    text += "<td id='updateBtn" + i + " '<button type='button' class='btn-primary'>Delete</button> </span></td>";
+                    text += "<td id='" + ids[i] + " '<button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#updateContactWindow' onclick = 'getContactInfo(this.id)'>Update</button> </span></td>";
                     text += "<tr/>"
                 }
-                //console.log(typeof text);
                 text += "</table>";
                 document.getElementById("tbody").innerHTML = text;
             }
@@ -69,6 +67,25 @@ function loadContact()
     {
         console.log(err.message);
     }
+}
+//get Contact information when user clicks on update contact button
+
+function getContactInfo(id){
+   let current = document.getElementById(id)
+   let phone = current.previousElementSibling.innerText
+   document.getElementById("phoneNumberEdit").value = phone
+   //current = phone
+   let email = current.previousElementSibling.previousElementSibling.innerText
+   document.getElementById("emailEdit").value = email
+   //current = email
+   let lastName = current.previousElementSibling.previousElementSibling.previousElementSibling.innerText
+   document.getElementById("lastNameEdit").value = lastName
+   // = lastName
+   let firstName = current.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerText
+   document.getElementById("firstNameEdit").value = firstName
+
+   document.getElementById("editContact").onclick = function(){updateContact(firstName, lastName, email, phone, id)}
+   document.getElementById("deleteContact").onclick = function(){deleteContact(id)}
 }
 
 function showTable() {
@@ -93,7 +110,23 @@ function addContact()
     let lastName = document.getElementById("lastName").value;
     let email = document.getElementById("email").value;
     let phone = document.getElementById("phoneNumber").value;
-    //let errorMsg = document.getElementById("errorMessage");
+    let errorMsg = document.getElementById("errorMessage");
+
+    if (firstName == "") 
+    {
+        errorMsg.innerHTML = "First name is required";
+        return;
+    }
+    if (lastName == "") 
+    {
+        errorMsg.innerHTML = "Last name is required";
+        return;
+    }
+    if (email == "" && phone == "") 
+    {
+        errorMsg.innerHTML = "Email and Phone is required";
+        return;
+    }
 
     if (!(checkValidEmail(email) && checkValidPhone(phone))) 
     {
@@ -104,24 +137,6 @@ function addContact()
     let tmp = { "firstName": firstName, "lastName": lastName, "email": email, "phone": phone, "userID": userID };
     let jsonPayload = JSON.stringify(tmp);
     let url = urlBase + '/AddContact.' + extension;
-
-    // if (firstName == "") 
-    // {
-    //     errorMsg.innerHTML = "First name is required";
-    //     return;
-    // }
-    // if (lastName == "") 
-    // {
-    //     errorMsg.innerHTML = "Last name is required";
-    //     return;
-    // }
-    // if (email == "" && phone == "") 
-    // {
-    //     errorMsg.innerHTML = "Must add phone, email, or both";
-    //     return;
-    // }
-
-    
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -182,6 +197,36 @@ function checkValidPhone(phone) {
     }
     document.getElementById("errorMessage").innerHTML = "";
     return true;
+}
+
+function deleteContact(contactID){
+    //TODO implement delete contact
+    //api expects the following
+    //{
+    //"ID": -1
+    //}
+    //and returns an empty string on success
+    //ID is the ID of the contact and not the users ID
+    console.log(contactID)
+}
+
+function updateContact(contactFirstName, contactLastName, contactEmail, contactPhone, contactID){
+    //TODO implement update contact info
+    //api expects the following
+    //{
+    //"firstName": "fred",
+    //"lastName": "secret",
+    //"email": "name@domain.net",
+    //"phone": "800-000-0012",
+    //"ID": -1
+    //}
+    //and returns an empty string on success
+
+    console.log(contactFirstName)
+    console.log(contactLastName)
+    console.log(contactEmail)
+    console.log(contactPhone)
+    console.log(contactID)
 }
 
 function readCookie() {
