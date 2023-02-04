@@ -72,20 +72,21 @@ function loadContact()
 
 function getContactInfo(id){
    let current = document.getElementById(id)
+
    let phone = current.previousElementSibling.innerText
    document.getElementById("phoneNumberEdit").value = phone
-   //current = phone
+
    let email = current.previousElementSibling.previousElementSibling.innerText
    document.getElementById("emailEdit").value = email
-   //current = email
+
    let lastName = current.previousElementSibling.previousElementSibling.previousElementSibling.innerText
    document.getElementById("lastNameEdit").value = lastName
-   // = lastName
+
    let firstName = current.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerText
    document.getElementById("firstNameEdit").value = firstName
 
-   document.getElementById("editContact").onclick = function(){updateContact(firstName, lastName, email, phone, id)}
-   document.getElementById("deleteContact").onclick = function(){deleteContact(id)}
+   document.getElementById("editContact").onclick = function(){updateContact(id)}
+   document.getElementById("deleteContact").onclick = function(){deleteContact(id, firstName, lastName)}
 }
 
 function showTable() {
@@ -199,7 +200,7 @@ function checkValidPhone(phone) {
     return true;
 }
 
-function deleteContact(contactID){
+function deleteContact(contactID, contactFirstName, contactLastName){
     //TODO implement delete contact
     //api expects the following
     //{
@@ -207,10 +208,40 @@ function deleteContact(contactID){
     //}
     //and returns an empty string on success
     //ID is the ID of the contact and not the users ID
-    console.log(contactID)
+    console.log(contactID, contactFirstName, contactLastName)
+
+    let check = confirm('Confirm deletion of contact: ' + contactFirstName+ ' ' + contactLastName);
+    if (check === true) {
+        let tmp = {
+            ID: contactID
+        };
+
+        let jsonPayload = JSON.stringify(tmp);
+
+        let url = urlBase + '/DeleteContact.' + extension;
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+        try {
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+
+                    console.log("Contact has been deleted");
+                    $('#updateContactWindow').modal('hide')
+                    loadContact();
+                }
+            };
+            xhr.send(jsonPayload);
+        } catch (err) {
+            console.log(err.message);
+        }
+    };
 }
 
-function updateContact(contactFirstName, contactLastName, contactEmail, contactPhone, contactID){
+
+
+function updateContact(contactID){
     //TODO implement update contact info
     //api expects the following
     //{
@@ -222,11 +253,51 @@ function updateContact(contactFirstName, contactLastName, contactEmail, contactP
     //}
     //and returns an empty string on success
 
+    let current = document.getElementById(contactID)
+
+    let contactPhone = document.getElementById("phoneNumberEdit").value
+    //current = phone
+
+    let contactEmail = document.getElementById("emailEdit").value
+    //current = email
+
+    let contactLastName = document.getElementById("lastNameEdit").value
+    // = lastName
+    let contactFirstName = document.getElementById("firstNameEdit").value
+
     console.log(contactFirstName)
     console.log(contactLastName)
     console.log(contactEmail)
     console.log(contactPhone)
     console.log(contactID)
+    
+    let tmp = {
+        "firstName": contactFirstName,
+        "lastName": contactLastName,
+        "email": contactEmail,
+        "phone": contactPhone,
+        "ID": contactID
+    };
+
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + '/UpdateContact.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log("Contact has been updated");
+                $('#updateContactWindow').modal('hide')
+                loadContact();
+            }
+        };
+        xhr.send(jsonPayload);
+    } catch (err) {
+        console.log(err.message);
+    }
 }
 
 function readCookie() {
