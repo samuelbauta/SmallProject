@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
 }, false)
 
 document.getElementById("addNewContact").addEventListener("click", addContact);
+document.getElementById("searchBtn").addEventListener("click", searchContacts)
 
 function loadContact()
 {
@@ -87,6 +88,66 @@ function getContactInfo(id){
 
    document.getElementById("editContact").onclick = function(){updateContact(id)}
    document.getElementById("deleteContact").onclick = function(){deleteContact(id, firstName, lastName)}
+}
+
+function searchContacts(){
+    let findContact = document.getElementById("searchBar").value
+
+    let temp = 
+    {
+        search: findContact,
+        userID: userID
+    }
+
+    let jsonPayload = JSON.stringify(temp);
+
+    let url = urlBase + '/SearchContact.' + extension;
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try
+    {
+        xhr.onreadystatechange = function()
+        {
+            if (this.readyState == 4 && this.status == 200)
+            {
+                let jsonObject = JSON.parse(xhr.responseText);
+                if (jsonObject.error)
+                {
+                    console.log(jsonObject.error);
+                    return;
+                }
+
+                let text = "<table border = '1'>"
+                for (let i = 0; i < jsonObject.results.length; i++)
+                {
+                    let first = jsonObject.results[i].firstName;
+                    let last = jsonObject.results[i].lastName;
+                    let email = jsonObject.results[i].email;
+                    let phone = jsonObject.results[i].phone;
+                    ids[i] = jsonObject.results[i].ID;
+
+                    text += "<tr id='row" + i + "'>"
+                    text += "<td id='first_Name" + i + "'><span>" + first + "</span></td>";
+                    text += "<td id='last_Name" + i + "'><span>" + last + "</span></td>";
+                    text += "<td id='email" + i + "'><span>" + email + "</span></td>";
+                    text += "<td id='phone" + i + "'><span>" + phone + "</span></td>";
+                    text += "<td id='" + ids[i] + " '<button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#updateContactWindow' onclick = 'getContactInfo(this.id)'>Update</button> </span></td>";
+                    text += "<tr/>"
+                }
+                text += "</table>";
+                document.getElementById("tbody").innerHTML = text;
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+    catch (err)
+    {
+        console.log(err.message);
+    }
+
+
+
 }
 
 function showTable() {
@@ -253,7 +314,7 @@ function updateContact(contactID){
     //}
     //and returns an empty string on success
 
-    let current = document.getElementById(contactID)
+    //let current = document.getElementById(contactID)
 
     let contactPhone = document.getElementById("phoneNumberEdit").value
     //current = phone
