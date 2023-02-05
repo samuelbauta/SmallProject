@@ -28,12 +28,10 @@
 <div class = "content">
 
     <!--SEARCH BOX-->
-    <form class = "search-bar" action = "SearchContact.php">
-        <input type="text" placeholder="Search. . ." name = "search">
-        <button type = "submit">
-            <i class = "fa fa-search">
-
-            </i>
+    <form class = "search-bar" onsubmit="return false">
+        <input type="text" placeholder="Search. . ." id="searchBar">
+        <button type = "submit" id="searchBtn">
+            <i class = "fa fa-search"></i>
         </button>
     </form>
     
@@ -85,6 +83,50 @@
                 </div>
                 
             </div>  
+        <!--Update Contact Window-->
+        <div class="modal" id="updateContactWindow">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+    
+                    <div class="modal-header">
+                        <h4 class="modal-title">Update Contact</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                                <div class="mb-3 mt-3">
+                                    <label for="firstName" class="form-label">First Name:</label>
+                                    <input type="text" class="form-control" id="firstNameEdit" placeholder="Enter First Name"
+                                        name="firstName">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="lastName" class="form-label">Last Name:</label>
+                                    <input type="text" class="form-control" id="lastNameEdit" placeholder="Enter Last Name"
+                                        name="lastName">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email:</label>
+                                    <input type="text" class="form-control" id="emailEdit" placeholder="Ex: xyz@domain.com"
+                                        name="email">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phoneNumber" class="form-label">Phone Number:</label>
+                                    <input type="phoneNumber" class="form-control" id="phoneNumberEdit"
+                                        placeholder="Ex: 123-456-7890" name="phoneNumber">
+                                </div>
+                                <div>
+                                    <h5 id="errorMessageEdit"></h5>
+                                </div>
+                                <button type="button" class="btn btn-primary" id="editContact">Update</button>
+                                <button type="button" class="btn btn-danger" id="deleteContact">Delete Contact</button>
+    
+                        </div>
+                    </div>
+                 </div>
+            </div>
+            
+        </div>  
 
      <!--CONTACTS TABLE-->
      <div class="tables">
