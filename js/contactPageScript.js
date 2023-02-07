@@ -37,7 +37,7 @@ function loadContact()
                 let jsonObject = JSON.parse(xhr.responseText);
                 if (jsonObject.error)
                 {
-                    console.log(jsonObject.error);
+                    console.log(jsonObject.error)
                     return;
                 }
 
@@ -92,6 +92,7 @@ function getContactInfo(id){
 
 function searchContacts(){
     let findContact = document.getElementById("searchBar").value
+    let result = document.getElementById("searchResult")
 
     let temp = 
     {
@@ -114,9 +115,10 @@ function searchContacts(){
                 let jsonObject = JSON.parse(xhr.responseText);
                 if (jsonObject.error)
                 {
-                    console.log(jsonObject.error);
+                    result.innerHTML = jsonObject.error;
                     return;
                 }
+                result.innerHTML = ""
 
                 let text = "<table border = '1'>"
                 for (let i = 0; i < jsonObject.results.length; i++)
@@ -145,9 +147,6 @@ function searchContacts(){
     {
         console.log(err.message);
     }
-
-
-
 }
 
 function showTable() {
@@ -186,7 +185,7 @@ function addContact()
     }
     if (email == "" && phone == "") 
     {
-        errorMsg.innerHTML = "Email and Phone is required";
+        errorMsg.innerHTML = "Either Email or Phone is required";
         return;
     }
 
@@ -211,7 +210,7 @@ function addContact()
                 console.log("Contact has been added!");
 
                 loadContact();
-                showTable();
+                //showTable();
                 let jsonObject = JSON.parse(xhr.responseText);
                 if (jsonObject.error == "") 
                 {
@@ -317,20 +316,31 @@ function updateContact(contactID){
     //let current = document.getElementById(contactID)
 
     let contactPhone = document.getElementById("phoneNumberEdit").value
-    //current = phone
-
     let contactEmail = document.getElementById("emailEdit").value
-    //current = email
-
     let contactLastName = document.getElementById("lastNameEdit").value
-    // = lastName
     let contactFirstName = document.getElementById("firstNameEdit").value
 
-    console.log(contactFirstName)
-    console.log(contactLastName)
-    console.log(contactEmail)
-    console.log(contactPhone)
-    console.log(contactID)
+    if (contactFirstName == "") 
+    {
+        document.getElementById("errorMessageEdit").innerHTML = "First name is required";
+        return;
+    }
+    if (contactLastName == "") 
+    {
+        document.getElementById("errorMessageEdit").innerHTML = "Last name is required";
+        return;
+    }
+    if (contactEmail == "" && contactPhone == "") 
+    {
+        document.getElementById("errorMessageEdit").innerHTML = "Either Email or Phone is required";
+        return;
+    }
+
+    if (!(checkValidEmail(contactEmail) && checkValidPhone(contactPhone))) 
+    {
+        document.getElementById("errorMessageEdit").innerHTML ="Invalid phone or email submission"
+        return;
+    }
     
     let tmp = {
         "firstName": contactFirstName,
@@ -392,4 +402,11 @@ function saveCookie(){
 	let date = new Date();
 	date.setTime(date.getTime()+(minutes*60*1000));	
 	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userID + ";expires=" + date.toGMTString();
+}
+function logout(){
+    userID = 0;
+	firstName = "";
+	lastName = "";
+	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+	window.location.href = "index.html";
 }
