@@ -16,31 +16,31 @@
             <ul>
                 <li><a href="index.html" onclick="logout()">Logout</a></li>
                 <li><a href="contacts.html">Contacts</a></li>
-                <li><a href="">About</a></li>
+                <li><a href="https://github.com/samuelbauta/SmallProject">Code</a></li>
             </ul>
-            <div class="container-fluid text-white">
-                <h2 id="userName"></h2>
+            <div class = "userNameBox">
+                <h2 id="userName" class = "styleUser"></h2>
             </div>
         </nav>
     </header>
 
 <div class = "content">
+    
 
     <!--SEARCH BOX-->
-    <form class = "search-bar" onsubmit="return false">
-        <input type="text" placeholder="Search. . ." id="searchBar">
-        <button type = "submit" id="searchBtn">
-            <i class = "fa fa-search"></i>
-        </button>
-        <div class="container-fluid">
-            <h4 id="searchResult"></h4>
+    <form class = "search-bar" onsubmit="return false" id="searchForm">
+        <i class="fa-solid fa-magnifying-glass icon"></i>
+        <input type="text" class = "input-field" placeholder= "Type here to search" id="searchBar">
+        <button type = "submit" id="searchBtn" class = "searchBtn">Search</button>
+        <div class="container-fluid text-primary text-center">
+            <h4 id="searchResult" class = "errMsg"></h4>
         </div>
     </form>
     
 
     <!-- ADD CONTACT -->
 
-    <button type="button" id="addContact" class="btn btn-primary btn-lg" data-bs-toggle="modal"
+    <button type="button" id="addContact" class="btn-contacts" data-bs-toggle="modal"
         data-bs-target="#addContactWindow">Add Contact</button>
 
             <div class="modal" id="addContactWindow">
@@ -120,7 +120,7 @@
                                 <div>
                                     <h5 id="errorMessageEdit"></h5>
                                 </div>
-                                <button type="button" class="btn btn-primary" id="editContact">Update</button>
+                                <button type="button" class = "btn btn-primary" id="editContact">Edit Contact</button>
                                 <button type="button" class="btn btn-danger" id="deleteContact">Delete Contact</button>
     
                         </div>
@@ -140,7 +140,7 @@
                         <th>Last&nbspName</th>
                         <th>Email</th>
                         <th>Phone</th>
-                        <th>Add/Delete</th>
+                        <th>Edit/Delete</th>
                     </tr>
                 </thread>
                 <tbody id="tbody">
@@ -162,6 +162,5 @@ integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
 crossorigin="anonymous"></script>
 <!--Import JS file for contacts page-->
 <script src="js/contactPageScript.js"></script>
-   
 </body>
 </html>

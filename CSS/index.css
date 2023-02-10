@@ -1,0 +1,83 @@
+body 
+{
+    background-image: url("https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+h1
+{
+    color: #D4D4D4;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    top: 10px;
+    position: relative;
+}
+
+
+.titleHeader
+{
+    margin-right: 60%;
+    margin-top: 10px;
+    width: 40%;
+    padding-left: 12px;
+    display: inline-block;
+
+}
+
+.logReg
+{
+    display: inline-block;
+    position: relative;
+    left: 70%;
+    bottom: 40px;
+}
+
+.loginBtn
+{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+    color: #1D2323;
+    border-radius: 30px;
+    border: 2px solid;
+    transition: .3s;
+    padding: 15px 20px;
+    width: 200px;
+}
+
+.loginBtn:hover
+{
+    background-color: #1D2323;
+    color: #D4D4D4;
+}
+
+.registerBtn
+{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+    /* color: #2E343B; */
+    color:#1D2323;
+    border-radius: 30px;
+    border: 2px solid;
+    transition: .3s;
+    padding: 15px 20px;
+    width: 200px;
+
+}
+
+.registerBtn:hover
+{
+    background-color: #1D2323;
+    color: #D4D4D4;
+}
+
+.modal
+{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+.modal-content
+{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}

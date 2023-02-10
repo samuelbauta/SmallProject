@@ -1,0 +1,262 @@
+body {
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 400;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("/img/pic.jpg");
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+}
+
+.updateBtn
+{
+  height: 52px;
+}
+
+.userNameBox
+{
+  max-width: fit-content;
+}
+
+.styleUser
+{
+  color: white;
+  width: fit-content;
+}
+
+.btn-contacts
+{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 18px;
+  color: #1D2323;
+  border-radius: 30px;
+  border: 2px solid;
+  transition: .3s;
+  padding: 15px 20px;
+  width: 200px;
+  position: absolute;
+  left: 80%;
+  top: 27%;
+}
+
+.btn-contacts:hover
+{
+    background-color: #1D2323;
+    color:#EEEEEE;
+}
+
+.errMsg
+{
+  color:#EEEEEE;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 17px;
+}
+
+header {
+  background-color: #1D2323;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: white;
+}
+
+header::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  left: 60%;
+  display: inline-block;
+  margin-left: 0px;
+  padding-left: 70px;
+  padding-top: 18px;
+  padding-bottom: 10px;
+  position: relative;
+}
+
+nav a {
+  color: #EEEEEE;
+  text-decoration: 0;
+  text-transform: uppercase;
+  font-size: 21;
+}
+
+nav a:hover {
+  color: #EEEEEE;
+}
+
+nav a::before {
+  content: '';
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: #EEEEEE;
+  position: absolute;
+  top: 0;
+  width: 0%;
+  transition: all ease-in-out 250ms; 
+}
+
+nav a:hover::before
+{
+  width: 100%
+}
+
+/* content from leinecker */
+.content {
+  bottom: 20%;
+  padding: 1px 16px;
+  margin-top: 160px;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+
+table {
+  width:100%;
+  table-layout: fixed;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+/* table formatting */
+#contactsTable {
+  display: block;
+  height: 500px;
+}
+
+.tbl-content {
+  height: 300px;
+  overflow-x: auto;
+  margin-top: 0px;
+  border: 1px solid #D4D4D4;
+}
+
+#contacts td,
+#contacts th {
+    border: 1px solid #EEEEEE;
+    background-color: #D4D4D4;
+}
+
+
+
+#contacts tr:hover {
+    background-color: #1D2323;
+}
+
+#contacts th {
+    padding: 20px 15px;
+    text-align: left;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 200;
+    font-size: 17px;
+    color: #EEEEEE;
+    background-color: #1D2323;
+    text-transform: uppercase;
+}
+
+#contacts td {
+  padding: 15px;
+  text-align: left;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  vertical-align: middle;
+  font-weight: 300;
+  font-size: 17px;
+  color: #1D2323;
+  background-color: #D4D4D4;
+
+}
+
+#contacts td span {
+  display: block;
+  white-space: nowrap;
+  font-size: 100%;
+  color: #1D2323;
+}
+
+
+form.search-bar input[type=text]
+{ 
+  position: relative;
+  left: 420px;
+  width: 500px;
+  height: 45px;
+  align-self: center;
+  border-radius:30px;
+  border:1px solid #dcdcdc;
+  padding: 20px;
+  
+}
+
+/* form.search-bar button
+{
+  /* position: relative;
+  left: 421px;
+  border-radius: 60px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 17px;
+  color: #1D2323;
+  padding: 5px;
+} 
+*/
+
+.searchBtn
+{
+  position: relative;
+  left: 421px;
+  border-radius: 60px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 17px;
+  color: #1D2323;
+  padding: 8px;
+  bottom:0px;
+  transition: .3s;
+  display: inline-block;
+}
+
+.searchBtn:hover
+{
+  background-color: #1D2323;
+  color:#EEEEEE;
+}
+
+
+#contacts th:nth-child(5) {
+	width: 10%;
+}
+
+
+#contacts td:nth-child(5) {
+	display: block;
+	text-align: center;	
+  background-color: #EEEEEE;
+  margin-top: auto;
+  transition: .2s;
+  border: 1px solid #1D2323;
+}
+
+#contacts td:nth-child(5):hover
+{
+	display: block;
+	text-align: center;	
+  background-color: #1D2323;
+  color:#EEEEEE;
+  margin-top: auto;
+}
+

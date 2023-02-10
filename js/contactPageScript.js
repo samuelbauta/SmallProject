@@ -11,7 +11,9 @@ document.addEventListener('DOMContentLoaded', function () {
 }, false)
 
 document.getElementById("addNewContact").addEventListener("click", addContact);
-document.getElementById("searchBtn").addEventListener("click", searchContacts)
+document.getElementById("searchBtn").addEventListener("click", searchContacts);
+document.getElementById("searchBar").addEventListener("keyup", searchContacts);
+
 
 function loadContact()
 {
@@ -55,7 +57,7 @@ function loadContact()
                     text += "<td id='last_Name" + i + "'><span>" + last + "</span></td>";
                     text += "<td id='email" + i + "'><span>" + email + "</span></td>";
                     text += "<td id='phone" + i + "'><span>" + phone + "</span></td>";
-                    text += "<td id='" + ids[i] + " '<button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#updateContactWindow' onclick = 'getContactInfo(this.id)'>Update</button> </span></td>";
+		    text += "<td id='" + ids[i] + " '<button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#updateContactWindow' onclick = 'getContactInfo(this.id)'>Update</button> </span></td>";
                     text += "<tr/>"
                 }
                 text += "</table>";
@@ -134,7 +136,7 @@ function searchContacts(){
                     text += "<td id='last_Name" + i + "'><span>" + last + "</span></td>";
                     text += "<td id='email" + i + "'><span>" + email + "</span></td>";
                     text += "<td id='phone" + i + "'><span>" + phone + "</span></td>";
-                    text += "<td id='" + ids[i] + " '<button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#updateContactWindow' onclick = 'getContactInfo(this.id)'>Update</button> </span></td>";
+		    text += "<td id='" + ids[i] + " '<button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#updateContactWindow' onclick = 'getContactInfo(this.id)'>Update</button> </span></td>";
                     text += "<tr/>"
                 }
                 text += "</table>";
@@ -216,6 +218,11 @@ function addContact()
                 {
                     //document.getElementById("addContactResult").innerHTML = `Successfully added ${document.getElementById("firstName")} ${document.getElementById("lastName")} to contacts`;
                     $('#addContactWindow').modal('hide')
+	            document.getElementById("firstName").value = "";
+                    document.getElementById("lastName").value = "";
+                    document.getElementById("email").value = "";
+                    document.getElementById("phoneNumber").value = "";
+                    document.getElementById("errorMessage").innerHTML = "";
                 }
                 else 
                 {
